@@ -16,7 +16,7 @@ const detailsTemplate = (book, onDelete) => html `
     <!--Edit and Delete are only for creator-->
     ${book.canEdit ? html` 
     <div id="action-buttons">
-      <a href="" id="edit-btn">Edit</a>
+      <a href="/edit/${book._id}" id="edit-btn">Edit</a>
       <a @click=${onDelete} href="javascript:void(0)" id="delete-btn">Delete</a>
     </div>` : null }
   </div>

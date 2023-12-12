@@ -7,39 +7,39 @@ import { submitHandler } from "../util.js";
 const editTemplate = (motor, onSubmit) => html`<section id="edit">
 <div class="form form-auto">
   <h2>Edit Your Car</h2>
-  <form class="edit-form">
-    <input type="text" name="model" id="model" placeholder="Model" />
+  <form @submit=${onSubmit} class="edit-form" method="POST">
+    <input type="text" name="model" id="model" placeholder="Model" />${motor.model}
     <input
       type="text"
       name="imageUrl"
       id="car-image"
       placeholder="Your Car Image URL"
-    />
+    />${motor.imageUrl}
     <input
       type="text"
       name="price"
       id="price"
       placeholder="Price in Euro"
-    />
+    /> ${motor.price}
     <input
       type="number"
       name="weight"
       id="weight"
       placeholder="Weight in Kg"
-    />
+    />${motor.weight}
     <input
       type="text"
       name="speed"
       id="speed"
       placeholder="Top Speed in Kmh"
-    />
+    /> ${motor.speed}
     <textarea
       id="about"
       name="about"
       placeholder="More About The Car"
       rows="10"
       cols="50"
-    ></textarea>
+    >${motor.abo}</textarea>
     <button type="submit">Edit</button>
   </form>
 </div>
@@ -65,10 +65,13 @@ async function onSubmit(ctx, data, event) {
     }
 
     const result = await recipeService.update(motorId, {
-        title: data.title,
-        description: data.description,
-        imageUrl: data.imageUrl,
-        type: data.type,
+        
+        model: data.model,
+        imageUrl: data.imageUrl, 
+        price: data.price,
+        weight: data.weight,
+        speed: data.speed,
+        about: data.about,
         
     });
 
